@@ -16,31 +16,24 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
-
     context_dict = {}
-
     response = render(request, 'rango/index.html', context=context_dict)
     return response
 
 
 def movies_list(request):
-
     context_dict = {}
-
     response = render(request, 'rango/movies_list.html', context=context_dict)
     return response
 
 
 def user_personal_page(request):
-
     context_dict = {}
-
     response = render(request, 'rango/user_personal_page.html', context=context_dict)
     return response
 
 
 def movie_detail_page(request):
-
     context_dict = {}
 
     response = render(request, 'rango/movie_detail_page.html', context=context_dict)
@@ -50,14 +43,10 @@ def movie_detail_page(request):
 def register(request):
 
     registered = False
-
-
     if request.method == 'POST':
 
         user_form = UserForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
-
- 
+        profile_form = UserProfileForm(request.POST) 
         if user_form.is_valid() and profile_form.is_valid():
  
                 user = user_form.save()
@@ -75,7 +64,6 @@ def register(request):
 
         user_form = UserForm()
         profile_form = UserProfileForm()
-
  
     return render(request,
     'rango/register.html',
