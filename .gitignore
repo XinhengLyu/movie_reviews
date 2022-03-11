@@ -2,3 +2,6 @@ db.sqlite3
 __pycache__/ 
 *.pyc
 
+media/Movie_images/*
+media/profile_images/*
+rango/migrations/*

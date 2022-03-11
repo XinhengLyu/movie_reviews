@@ -1,6 +1,8 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.urls import URLPattern, path
+from rango.forms import MovieReviewsForm
+from rango.forms import MovieForm
 from rango import views
 from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
@@ -44,16 +46,15 @@ def register(request):
 
     registered = False
     if request.method == 'POST':
-
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST) 
         if user_form.is_valid() and profile_form.is_valid():
- 
                 user = user_form.save()
                 user.set_password(user.password)
                 user.save()
                 profile = profile_form.save(commit=False)
                 profile.user = user
+                
                 if 'picture' in request.FILES:
                     profile.picture = request.FILES['picture']
                     profile.save()
@@ -95,3 +96,39 @@ def restricted(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('rango:index')) 
+
+
+def add_movie(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST,request.FILES) 
+        if  form.is_valid():
+            profile = form.save(commit=False)
+            if 'movie_image' in request.FILES:
+                profile.movie_image = request.FILES['movie_image']
+                print(profile.movie_image)
+                profile.save()
+                form.save()
+        else:
+            print(form.errors)
+    else:
+        form = MovieForm()
+    return render(request,
+    'rango/add_movie.html',
+    context = {'form': form})
+
+    
+def add_movie_reviews(request):
+    if request.method == 'POST':
+        form = MovieReviewsForm(request.POST) 
+        if  form.is_valid():
+             form.save()
+               
+        else:
+            print(form.errors)
+    else:
+        form = MovieReviewsForm()
+    return render(request,
+    'rango/add_movie_reviews.html',
+    context = {'form': form})
+
+

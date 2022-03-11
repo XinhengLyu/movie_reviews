@@ -1,0 +1,19 @@
+{% extends 'rango/base.html' %} 
+{% load staticfiles %}
+
+{% block title_block %}
+     add_movie_reviews
+{% endblock %}
+
+{% block body_block %} 
+<h1>Add movie_review</h1> 
+
+
+<form id="add_movie_reviews" method="post" action="{% url 'rango:add_movie_reviews' %}" >
+    {% csrf_token %} 
+    {{ form.as_p }}
+    
+    <input type="submit" name="submit" value="add_movie_reviews" />
+    <input type="hidden" name="submit" value="add_movie_reviews" />
+
+{% endblock %}
