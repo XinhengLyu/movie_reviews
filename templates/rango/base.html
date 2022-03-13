@@ -18,10 +18,10 @@
          <a href="{% url 'rango:movies_list' %}">Movies_List</a>
          <a href="{% url 'rango:movie_detail_page' %}">Movie Detail Page</a>
          <a href="{% url 'rango:user_personal_page' %}">User Personal Page</a>      
-         <a href="{% url 'rango:register' %}">Sign up</a>    
-         <a href="{% url 'rango:login' %}">Login</a>
+         <a href="{% url 'registration_register' %}">Sign up</a>    
+         <a href="{% url 'auth_login' %}">Login</a>
          <a href="{% url 'rango:restricted' %}">Restricted Page</a>
-         <a href="{% url 'rango:logout' %}">Logout</a></li>
+         <a href="{% url 'auth_logout' %}?next={% url 'rango:index' %}">Logout</a></li>
          <a href="{% url 'rango:add_movie' %}">Add_movie</a></li>
          <a href="{% url 'rango:add_movie_reviews' %}">Add_movie reviews</a></li>
         </div>

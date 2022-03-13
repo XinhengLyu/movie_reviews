@@ -32,7 +32,15 @@ class Movie_review(models.Model):
     dislikes_number=models.IntegerField(blank=False)
     creat_time=models.DateField(auto_now_add=True)
     grade=models.IntegerField(blank=False)
+    
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        grade=cleaned_data.get('grade')
+        if grade>10 or grade<0:
+            grade = f'0<grade<10'
+            cleaned_data['grade'] = grade
 
+        return grade
     def __str__(self):
        return self.user_id
 
