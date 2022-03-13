@@ -31,6 +31,7 @@ class Movie_review(models.Model):
     likes_number=models.IntegerField(blank=False)
     dislikes_number=models.IntegerField(blank=False)
     creat_time=models.DateField(auto_now_add=True)
+    grade=models.IntegerField(blank=False)
 
     def __str__(self):
        return self.user_id

@@ -37,6 +37,7 @@ class MovieReviewsForm(forms.ModelForm):
     likes_number=forms.IntegerField()
     dislikes_number=forms.IntegerField()
     # creat_time=forms.DateField()
+    review_grade=forms.IntegerField()
     class Meta:
 
         model = Movie_review
