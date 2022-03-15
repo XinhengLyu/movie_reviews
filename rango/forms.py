@@ -30,18 +30,17 @@ class MovieForm(forms.ModelForm):
         model = Movie
         fields = ('movie_name','movie_information','release_date','movie_image')
 class MovieReviewsForm(forms.ModelForm):
-
-    movie=forms.IntegerField()
-    user=forms.IntegerField()
-    review_content=forms.CharField(max_length=256)
-    likes_number=forms.IntegerField()
-    dislikes_number=forms.IntegerField()
+    #movie=forms.IntegerField()
+    #user=forms.IntegerField()
+    #review_content=forms.CharField(max_length=256, label="review_content")
+    #likes_number=0   #forms.IntegerField()
+    #dislikes_number=0 #forms.IntegerField()
     # creat_time=forms.DateField()
-    review_grade=forms.IntegerField()
+    #review_grade=forms.IntegerField(label="grade")
+    
     class Meta:
-
         model = Movie_review
-        fields = ('review_content','likes_number','dislikes_number')
+        fields = ('review_content','grade')
 
 
 

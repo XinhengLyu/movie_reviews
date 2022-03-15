@@ -2,15 +2,72 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Movie Detail Page
-
+{{ movie.movie_name }}
 {% endblock %}
 
 
 {% block body_block %}
-<div>
-    <h1>Movie Detail Page</h1>
-  
-   
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <!-- Title and Rating -->
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{ movie.movie_name }}</h1>
+                </div>
+                <div class="col-md-4">
+                    <h1>8.5/10</h1>
+                </div>
+            </div>
+
+            <!-- Poster and Trailer -->
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="/media/{{ movie.movie_image }}" alt="Poster for {{ movie.movie_name }}" class="img-fluid">
+                </div>
+                <div class="col-md-8">
+                    <!-- width="560" height="315" -->
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/" {{ movie.trailer_link }}
+                        title="Movie Trailer" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+
+            </div>
+
+            <!-- Movie Description -->
+            <div class="row">
+                <p>
+                    {{ movie.movie_information }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'rango:add_movie_reviews' movie.slug %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        {% for review in reviews %}
+        <div class="card-body">
+            {{ review.user }}
+            {{ review.create_time }}
+            {{ review.grade }}
+            {{ review.review_content }}
+        </div>
+        {% empty %}
+            No reviews on this movie yet
+        {% endfor %}
+    </div>
+
 </div>
 {% endblock %}

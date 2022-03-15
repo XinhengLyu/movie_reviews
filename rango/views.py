@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from rango.models import Movie, UserProfile
 
 # Create your views here.
 
@@ -35,9 +35,16 @@ def user_personal_page(request):
     return response
 
 
-def movie_detail_page(request):
+def movie_detail_page(request, movie_slug):
+    
     context_dict = {}
-
+    try:
+        movie = Movie.objects.get(slug = movie_slug)
+        context_dict['movie'] = movie
+        context_dict['form'] = MovieReviewsForm()
+        context_dict['reviews'] = movie.reviews.all()
+    except:
+        context_dict['movie'] = None
     response = render(request, 'rango/movie_detail_page.html', context=context_dict)
     return response
 
@@ -117,18 +124,27 @@ def add_movie(request):
     context = {'form': form})
 
     
-def add_movie_reviews(request):
+def add_movie_reviews(request, movie_slug):
+    movie = Movie.objects.get(slug=movie_slug)
     if request.method == 'POST':
+        print(request.POST)
         form = MovieReviewsForm(request.POST) 
         if  form.is_valid():
-             form.save()
-               
+            review = form.save(commit=False)
+            review.comment = request.POST.get("review_content")
+            review.rating = request.POST.get("grade")
+            review.movie = movie
+            review.likes_number = 0
+            review.dislikes_number = 0
+            review.user = UserProfile.objects.get(id=1)
+            review.save()
+            form = MovieReviewsForm()
+
+            #return redirect("rango:movie_detail_page", movie.slug)
         else:
             print(form.errors)
     else:
         form = MovieReviewsForm()
-    return render(request,
-    'rango/add_movie_reviews.html',
-    context = {'form': form})
+    return render(request,'rango/movie_detail_page.html',context = {'movie':movie, 'form': form, 'reviews':movie.reviews.all()})
 
 
