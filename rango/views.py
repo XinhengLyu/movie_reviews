@@ -1,6 +1,7 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.urls import URLPattern, path
+from rango.models import Movie
 from rango.forms import MovieReviewsForm
 from rango.forms import MovieForm
 from rango import views
@@ -11,7 +12,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -35,11 +36,21 @@ def user_personal_page(request):
     return response
 
 
-def movie_detail_page(request):
+def movie_detail_page(request, movie_slug):
     context_dict = {}
-
+    movie = Movie.objects.get(slug = movie_slug)
+    context_dict['movie'] = movie
+    context_dict['form'] = MovieReviewsForm()
+    reviews = movie.reviews.all()
+    context_dict['reviews'] = reviews
+    trailer = movie.trailer_link.split("v=")[1].split("&")[0]
+    context_dict['trailer'] = trailer
+    print(reviews)
+    if reviews:
+        context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
     response = render(request, 'rango/movie_detail_page.html', context=context_dict)
     return response
+
 
 
 def register(request):
@@ -116,17 +127,48 @@ def add_movie(request):
     context = {'form': form})
 
     
-def add_movie_reviews(request):
+# def add_movie_reviews(request):
+#     if request.method == 'POST':
+#         form = MovieReviewsForm(request.POST) 
+#         if  form.is_valid():
+#              form.save()
+#         else:
+#             print(form.errors)
+#     else:
+#         form = MovieReviewsForm()
+#     return render(request,
+#     'rango/add_movie_reviews.html',
+#     context = {'form': form})
+
+
+def add_movie_reviews(request, movie_slug):
+    movie = Movie.objects.get(slug=movie_slug)
+
+    # previous_review_by_user = movie.reviews.get(user=request.user)
+    # if previous_review_by_user:
+    #     return HttpResponse("Cannot submit review for the same movie twice")
+
+    # if request.user.is_superuser:
+    #     return HttpResponse("Admins cannot submit")
+
     if request.method == 'POST':
         form = MovieReviewsForm(request.POST) 
         if  form.is_valid():
-             form.save()
+            review = form.save(commit=False)
+            review.movie = movie
+            review.likes_number = 0
+            review.dislikes_number = 0
+            review.user = request.user
+            review.save()
+            form = MovieReviewsForm()
         else:
             print(form.errors)
     else:
         form = MovieReviewsForm()
-    return render(request,
-    'rango/add_movie_reviews.html',
-    context = {'form': form})
-
-
+    context_dict = {}
+    context_dict['movie'] = movie
+    reviews = movie.reviews.all()
+    context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
+    context_dict['form'] = form
+    context_dict['reviews'] = reviews
+    return render(request,'rango/movie_detail_page.html',context=context_dict)
