@@ -1,11 +1,11 @@
 {% extends 'rango/base.html' %}
-{% load staticfiles %}
+
 
 {% block title_block %}
     Homepage
 
 {% endblock %}
-
+{% load staticfiles %}
 
 {% block body_block %}
 <div>
@@ -20,8 +20,10 @@
              <div>
                  {{ movie.movie_name}}
                  {{ movie.movie_information}}
-                 {{ movie.release_date}}<br/>
-                 <img src="media/{{movie.movie_image}}" alt=" "/>
+                 {{ movie.release_date}}
+                 {{ movie.movie_image}}<br/>
+                 <img src="{%static ''%}{{movie.movie_image}}"/>
+                
 
              </div>
          {% endfor %}
