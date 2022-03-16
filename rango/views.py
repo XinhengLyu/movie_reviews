@@ -14,13 +14,15 @@ from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
-
+from rango.models import Movie
 
 
 def index(request):
-    context_dict = {}
-    response = render(request, 'rango/index.html', context=context_dict)
-    return response
+    index_movie_list = Movie.objects.order_by('movie_name')[:5]
+
+    context_dict = {'movies': index_movie_list}
+
+    return render(request, 'rango/index.html', context=context_dict)
 
 
 def movies_list(request):

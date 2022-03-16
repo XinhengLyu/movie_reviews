@@ -10,7 +10,26 @@
 {% block body_block %}
 <div>
     <h1>Home Page</h1>
-  
+    <div>
+
+    </div>
+    <div>
+    {% if movies %}
+
+         {% for movie in movies %}
+             <div>
+                 {{ movie.movie_name}}
+                 {{ movie.movie_information}}
+                 {{ movie.release_date}}<br/>
+                 <img src="media/{{movie.movie_image}}" alt=" "/>
+
+             </div>
+         {% endfor %}
+
+    {% else %}
+         <strong>There are no movies present.</strong>
+    {% endif %}
+    </div>
    
 </div>
 {% endblock %}
