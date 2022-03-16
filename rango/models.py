@@ -26,8 +26,8 @@ class Movie(models.Model):
        return self.movie_name
 
 class Movie_review(models.Model):
-    movie=models.ForeignKey(Movie, on_delete=models.CASCADE,default=1, related_name="reviews") 
-    user=models.ForeignKey(UserProfile, on_delete=models.CASCADE,default=1, related_name="reviews") 
+    movie=models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="reviews") 
+    user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews") 
     review_content=models.CharField(max_length=2000,blank=False)
     likes_number=models.IntegerField(blank=False)
     dislikes_number=models.IntegerField(blank=False)

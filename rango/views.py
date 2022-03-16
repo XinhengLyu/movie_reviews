@@ -12,10 +12,10 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from rango.models import Movie, UserProfile
+from django.db.models import Avg
+
 
 # Create your views here.
-
-
 
 def index(request):
     context_dict = {}
@@ -38,13 +38,16 @@ def user_personal_page(request):
 def movie_detail_page(request, movie_slug):
     
     context_dict = {}
-    try:
-        movie = Movie.objects.get(slug = movie_slug)
-        context_dict['movie'] = movie
-        context_dict['form'] = MovieReviewsForm()
-        context_dict['reviews'] = movie.reviews.all()
-    except:
-        context_dict['movie'] = None
+    movie = Movie.objects.get(slug = movie_slug)
+    context_dict['movie'] = movie
+    context_dict['form'] = MovieReviewsForm()
+    reviews = movie.reviews.all()
+    context_dict['reviews'] = reviews
+    trailer = movie.trailer_link.split("v=")[1].split("&")[0]
+    context_dict['trailer'] = trailer
+    print(reviews)
+    if reviews:
+        context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
     response = render(request, 'rango/movie_detail_page.html', context=context_dict)
     return response
 
@@ -126,25 +129,28 @@ def add_movie(request):
     
 def add_movie_reviews(request, movie_slug):
     movie = Movie.objects.get(slug=movie_slug)
+
+    
+
     if request.method == 'POST':
         print(request.POST)
         form = MovieReviewsForm(request.POST) 
         if  form.is_valid():
             review = form.save(commit=False)
-            review.comment = request.POST.get("review_content")
-            review.rating = request.POST.get("grade")
             review.movie = movie
             review.likes_number = 0
             review.dislikes_number = 0
-            review.user = UserProfile.objects.get(id=1)
+            review.user = request.user
             review.save()
             form = MovieReviewsForm()
-
-            #return redirect("rango:movie_detail_page", movie.slug)
         else:
             print(form.errors)
     else:
         form = MovieReviewsForm()
-    return render(request,'rango/movie_detail_page.html',context = {'movie':movie, 'form': form, 'reviews':movie.reviews.all()})
-
-
+    context_dict = {}
+    context_dict['movie'] = movie
+    reviews = movie.reviews.all()
+    context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
+    context_dict['form'] = form
+    context_dict['reviews'] = reviews
+    return render(request,'rango/movie_detail_page.html',context=context_dict)
