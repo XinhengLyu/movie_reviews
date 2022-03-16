@@ -16,7 +16,7 @@ class Movie(models.Model):
     movie_information=models.CharField(max_length=512,blank=False)
     release_date=models.DateField(blank=False)
     movie_image = models.ImageField(upload_to='Movie_images',blank=False)
-    slug = models.SlugField(null=True)
+    slug = models.SlugField(default=1)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.movie_name) 
