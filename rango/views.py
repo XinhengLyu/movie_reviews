@@ -105,7 +105,6 @@ def add_movie(request):
             profile = form.save(commit=False)
             if 'movie_image' in request.FILES:
                 profile.movie_image = request.FILES['movie_image']
-                print(profile.movie_image)
                 profile.save()
                 form.save()
         else:
@@ -122,7 +121,6 @@ def add_movie_reviews(request):
         form = MovieReviewsForm(request.POST) 
         if  form.is_valid():
              form.save()
-               
         else:
             print(form.errors)
     else:
