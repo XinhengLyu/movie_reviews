@@ -6,7 +6,7 @@ from django.template.defaultfilters import slugify
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    information = models.CharField(max_length=512)
+    information = models.CharField(max_length=512,blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     def __str__(self):
         return self.user.username
@@ -16,7 +16,7 @@ class Movie(models.Model):
     movie_information=models.CharField(max_length=512,blank=False)
     release_date=models.DateField(blank=False)
     movie_image = models.ImageField(upload_to='Movie_images',blank=False)
-    slug = models.SlugField()
+    slug = models.SlugField(null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.movie_name) 
@@ -32,7 +32,7 @@ class Movie_review(models.Model):
     likes_number=models.IntegerField(blank=False)
     dislikes_number=models.IntegerField(blank=False)
     creat_time=models.DateField(auto_now_add=True)
-    grade=models.IntegerField(blank=False)
+    grade=models.IntegerField(blank=False,default=1)
     
     # def clean(self):
     #     cleaned_data = self.cleaned_data
