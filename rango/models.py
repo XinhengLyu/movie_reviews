@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django import views
 from django.template.defaultfilters import slugify
+from django.db.models import Avg
 
 
 class UserProfile(models.Model):
@@ -25,6 +26,11 @@ class Movie(models.Model):
    
     def __str__(self):
        return self.movie_name
+    
+    def get_average_rating(self):
+        reviews = self.reviews.all()
+        round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
+        return 0
 
 class Movie_review(models.Model):
     movie=models.ForeignKey(Movie, on_delete=models.CASCADE,related_name="reviews") 

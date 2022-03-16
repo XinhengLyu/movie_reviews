@@ -45,9 +45,9 @@ def movie_detail_page(request, movie_slug):
     context_dict['reviews'] = reviews
     trailer = movie.trailer_link.split("v=")[1].split("&")[0]
     context_dict['trailer'] = trailer
-    print(reviews)
+
     if reviews:
-        context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
+        context_dict['average_rating'] = movie.get_average_rating()
     response = render(request, 'rango/movie_detail_page.html', context=context_dict)
     return response
 
