@@ -78,52 +78,7 @@ User Personal Page
       </div>
     </div>
   </div>
-  
 
-  <div class="page-single">
-    <div class="container">
-      <div class="row ipad-width">
-        <div class="col-md-3 col-sm-12 col-xs-12">
-          <div class="user-information">
-            <div class="user-img">
-              <a href="#"><img src="{%static ''%}{{ objdic.picture }}" alt=""><br></a>
-
-            </div>
-            <div class="user-fav">
-              <p>information:</p>
-              <ul>
-                <li class="active"><a href="">{{ objdic.information }}</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-9 col-sm-12 col-xs-12">
-          <div class="form-style-1 user-pro" action="#">
-            {% for item in comment %}
-
-            <h4>{{ item.movie_name }}</h4>
-            <div class="row" style="margin-top: 20px">
-              <div class="col-md-6 form-it">
-                <input type="text" style="width: 700px;height: 150px" value="{{ item.comment }}">
-                <div style="margin-top: 20px;width: 700px">
-                  <img src="{% static 'images/like.png' %}" width="22px"
-                    height="22px"><label>{{ item.likes_number }}</label>
-                  <img src="{% static 'images/dislike.png' %}" width="22px" height="22px"
-                    style="margin-left: 20px"><label>{{ item.dislikes_number }}</label>
-                  <label style="margin-left: 50px">grade:{{ item.grade }}</label>
-                  <label style="float: right">{{ item.creat_time }}</label>
-                </div>
-              </div>
-            </div>
-
-            {% endfor %}
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 {% endblock %}
 
