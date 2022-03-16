@@ -40,7 +40,7 @@ class Movie_review(models.Model):
     likes_number=models.IntegerField(blank=False)
     dislikes_number=models.IntegerField(blank=False)
     create_time=models.DateField(auto_now_add=True)
-    grade=models.IntegerField(blank=False,default=1)
+    grade=models.DecimalField( max_digits=2, decimal_places=1,blank=False,default=1.0)
     
     # def clean(self):
     #     cleaned_data = self.cleaned_data

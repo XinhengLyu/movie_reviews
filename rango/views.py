@@ -1,11 +1,12 @@
 from http.client import HTTPResponse
+from django.forms import model_to_dict
 from django.shortcuts import render
 from django.urls import URLPattern, path
-from rango.models import Movie
+from rango.models import Movie,UserProfile
 from rango.forms import MovieReviewsForm
 from rango.forms import MovieForm
 from rango import views
-from rango.forms import UserForm, UserProfileForm
+from rango.forms import UserForm, UserProfileForm,Movie_review
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
@@ -31,7 +32,27 @@ def movies_list(request):
 
 
 def user_personal_page(request):
-    context_dict = {}
+    id = request.GET.get("id")#或者直接去session里面拿
+    obj = UserProfile.objects.get(id=id)
+    objdic = model_to_dict(obj)
+    
+    #拼接评论
+    comment = []
+    commentList = Movie_review.objects.filter(user_id=id).values()
+    for item in commentList:
+        commentObj = {}
+        commentObj["comment"] = item["review_content"]
+        commentObj["grade"] = item["grade"]
+        commentObj["likes_number"] = item["likes_number"]
+        commentObj["dislikes_number"] = item["dislikes_number"]
+        commentObj["create_time"] = item["create_time"]
+        movieObJ = model_to_dict(Movie.objects.get(id=item["movie_id"]))
+        commentObj["movie_name"] = movieObJ["movie_name"]
+        commentObj["movie_image"] = movieObJ["movie_image"]
+        commentObj["release_year"]=movieObJ["release_date"].strftime("%Y")
+      
+        comment.append(commentObj)
+    context_dict = {"objdic": objdic,"comment":comment}
     response = render(request, 'rango/user_personal_page.html', context=context_dict)
     return response
 

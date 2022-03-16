@@ -2,15 +2,139 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    User Personal Page
+User Personal Page
 
 {% endblock %}
 
 
 {% block body_block %}
-<div>
-    <h1>User Personal Page</h1>
-  <!-- 代码写到这 -->
-   
+
+  <div class="hero user-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="hero-ct">
+            <h1 Marvel movie in my opinion>{{user.username}}’s profile</h1>
+            <ul class="breadcumb">
+              <li class="active"><a href="#">Home</a></li>
+              <li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-single" style="padding:20px">
+    <div class="container">
+      <div class="row ipad-width2">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="user-information">
+            <div class="user-img">
+              <a href="#"><img src="{%static ''%}{{ objdic.picture }}" style="width:180px; height:180px; border-radius:50%; " alt=""><br></a>
+              <h1 class="col-md-12" style="font-family: 'Dosis', sans-serif;
+              color: #ffffff;
+              font-weight: 500;
+              text-transform: uppercase;">{{user.username}}</h1>
+            </div> 
+            <div class="user-fav">
+              <p>Information</p>
+              <ul style="font-family:'Dosis', sans-serif; color: #ffffff;"><li>Best Marvel movie in my opinion</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
+          <div class="topbar-filter">
+
+            <p>Found <span>3 rates</span> in total</p>            
+        </div>
+          {% for item in comment %}
+          <div class="movie-item-style-2 userrate">
+            <img src="{%static ''%}{{ item.movie_image }}" alt="">
+            <div class="mv-item-infor">
+              <h6><a href="#">{{ item.movie_name }} <span>({{item.release_year}})</span></a></h6>
+              <p class="time sm-text">your rate:</p>
+              <p class="rate"><i class="ion-android-star"></i><span>{{ item.grade }}</span> /10</p>
+              <p class="time sm-text">your reviews:</p>
+              <p class="time sm">{{ item.create_time }}</p>
+              <p>{{ item.comment }}</p>		
+            </div>
+          </div>
+          {% endfor %}
+
+          <div class="topbar-filter">
+            <label>Movies per page:</label>
+            <select>
+              <option value="range">20 Movies</option>
+              <option value="saab">10 Movies</option>
+            </select>
+            <div class="pagination2">
+              <span>Page 1 of 1:</span>
+              <a class="active" href="#">1</a>
+              <a href="#"><i class="ion-arrow-right-b"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="page-single">
+    <div class="container">
+      <div class="row ipad-width">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="user-information">
+            <div class="user-img">
+              <a href="#"><img src="{%static ''%}{{ objdic.picture }}" alt=""><br></a>
+
+            </div>
+            <div class="user-fav">
+              <p>information:</p>
+              <ul>
+                <li class="active"><a href="">{{ objdic.information }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
+          <div class="form-style-1 user-pro" action="#">
+            {% for item in comment %}
+
+            <h4>{{ item.movie_name }}</h4>
+            <div class="row" style="margin-top: 20px">
+              <div class="col-md-6 form-it">
+                <input type="text" style="width: 700px;height: 150px" value="{{ item.comment }}">
+                <div style="margin-top: 20px;width: 700px">
+                  <img src="{% static 'images/like.png' %}" width="22px"
+                    height="22px"><label>{{ item.likes_number }}</label>
+                  <img src="{% static 'images/dislike.png' %}" width="22px" height="22px"
+                    style="margin-left: 20px"><label>{{ item.dislikes_number }}</label>
+                  <label style="margin-left: 50px">grade:{{ item.grade }}</label>
+                  <label style="float: right">{{ item.creat_time }}</label>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
+
+
+<style>
+  #hero_h2{
+    font-family: 'Dosis', sans-serif;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+</style>
