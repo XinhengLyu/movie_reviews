@@ -1,3 +1,4 @@
+#from curses.ascii import HT
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.urls import URLPattern, path
@@ -130,10 +131,14 @@ def add_movie(request):
 def add_movie_reviews(request, movie_slug):
     movie = Movie.objects.get(slug=movie_slug)
 
-    
+    # previous_review_by_user = movie.reviews.get(user=request.user)
+    # if previous_review_by_user:
+    #     return HttpResponse("Cannot submit review for the same movie twice")
+
+    # if request.user.is_superuser:
+    #     return HttpResponse("Admins cannot submit")
 
     if request.method == 'POST':
-        print(request.POST)
         form = MovieReviewsForm(request.POST) 
         if  form.is_valid():
             review = form.save(commit=False)
