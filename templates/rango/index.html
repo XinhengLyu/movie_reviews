@@ -12,101 +12,55 @@ Homepage
 	<div class="slider sliderv2">
 		<div class="container">
 			<div class="row">
+				
 				<div class="slider-single-item">
-					<div class="movie-item">
-						<div class="row">
-							<div class="col-md-8 col-sm-12 col-xs-12">
-								<div class="title-in">
-									<div class="cate">
-										<span class="blue"><a href="#">Sci-fi</a></span>
-										<span class="yell"><a href="#">Action</a></span>
-										<span class="orange"><a href="#">advanture</a></span>
-									</div>
-									<h1><a href="#">guardians of the<br>
-											galaxy <span>2015</span></a></h1>
-									<div class="social-btn">
-										<a href="#" class="parent-btn"><i class="ion-play"></i> Watch Trailer</a>
-										<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
-										<div class="hover-bnt">
-											<a href="#" class="parent-btn"><i
-													class="ion-android-share-alt"></i>share</a>
-											<div class="hvr-item">
-												<a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
-												<a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
-												<a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
-												<a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
-											</div>
-										</div>
-									</div>
-									<div class="mv-details">
-										<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-										<ul class="mv-infor">
-											<li> Run Time: 2h21’ </li>
-											<li> Rated: PG-13 </li>
-											<li> Release: 1 May 2015</li>
-										</ul>
-									</div>
-									<div class="btn-transform transform-vertical">
-										<div><a href="#" class="item item-1 redbtn">more detail</a></div>
-										<div><a href="#" class="item item-2 redbtn hvrbtn">more detail</a></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-12 col-xs-12">
-								<div class="mv-img-2">
-									<a href="#"><img src="{% static 'images/uploads/poster1.jpg' %}" alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="movie-item">
-						<div class="row">
-							<div class="col-md-8 col-sm-12 col-xs-12">
-								<div class="title-in">
-									<div class="cate">
-										<span class="blue"><a href="#">Sci-fi</a></span>
-										<span class="yell"><a href="#">Action</a></span>
-										<span class="orange"><a href="#">advanture</a></span>
-									</div>
-									<h1><a href="#">guardians of the<br>
-											galaxy <span>2015</span></a></h1>
-									<div class="social-btn">
-										<a href="#" class="parent-btn"><i class="ion-play"></i> Watch Trailer</a>
-										<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
-										<div class="hover-bnt">
-											<a href="#" class="parent-btn"><i
-													class="ion-android-share-alt"></i>share</a>
-											<div class="hvr-item">
-												<a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
-												<a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
-												<a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
-												<a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
-											</div>
-										</div>
-									</div>
-									<div class="mv-details">
-										<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-										<ul class="mv-infor">
-											<li> Run Time: 2h21’ </li>
-											<li> Rated: PG-13 </li>
-											<li> Release: 1 May 2015</li>
-										</ul>
-									</div>
-									<div class="btn-transform transform-vertical">
-										<div><a href="#" class="item item-1 redbtn">more detail</a></div>
-										<div><a href="#" class="item item-2 redbtn hvrbtn">more detail</a></div>
-									</div>
+					{% if movies %}
 
+				        {% for movie in movies %}
+						<div class="movie-item">
+							<div class="row">
+								<div class="col-md-8 col-sm-12 col-xs-12">
+									<div class="title-in">
+										<h1><a href="#">{{movie.movie_name}} <span>{{movie.release_date}}</span></a></h1>
+										<div class="social-btn">
+											<a href={{movie.trailer_link}} class="parent-btn"><i class="ion-play"></i> Watch Trailer</a>
+											<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+
+										</div>
+										<div class="mv-details">
+											<p><i class="ion-android-star"></i><span>
+												{% if movie.reviews.count > 0 %}
+													{{ movie.get_average_rating }}
+												{% else %}
+													Nil
+												{% endif %}
+											</span> /10</p>
+											<ul class="mv-infor">
+												<li> {{movie.release_date}} </li>
+				
+											</ul>
+										</div>
+										<div class="btn-transform transform-vertical">	
+
+											<div><a href={% url 'rango:movie_detail_page' movie.slug %} class="item item-1 redbtn hvrbtn">more detail</a></div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-4 col-sm-12 col-xs-12">
-								<div class="mv-img-2">
-									<a href="#"><img src="{% static 'images/uploads/poster1.jpg' %}" alt=""></a>
+								<div class="col-md-4 col-sm-12 col-xs-12">
+									<div class="mv-img-2">
+										
+										<a href={% url 'rango:movie_detail_page' movie.slug %} ><img src="{%static ''%}{{movie.movie_image}}"
+											style="width:350px;height: 450px" /></a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+				        {% endfor %}
+				    {% else %}
+				<strong>There are no movies present.</strong>
+				{% endif %}
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -117,86 +71,53 @@ Homepage
 			<div class="col-md-12">
 				<div class="title-hd">
 					<h2>in theater</h2>
-					<a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+					<a href="/movie/movies_list/" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
 				</div>
 				<div class="tabs">
+					<ul class="tab-links">
+						<li class="active"><a href="#tab1-h2">#Popular</a></li>
+					</ul>
 					<div class="tab-content">
 						<div id="tab1-h2" class="tab active">
 							<div class="row">
 								<div class="slick-multiItem2">
-								{% if movies %}
+									{% if movies %}
+
 									{% for movie in movies %}
-									<div class="slide-it">
-										<div class="movie-item">
-											<div class="mv-img">
-												<img style="width: auto;height: auto;" src="{%static ''%}{{movie.movie_image}}">
-											</div>
-											<div class="hvr-inner">
-												<a href="moviesingle.html"> Read more <i
-														class="ion-android-arrow-dropright"></i> </a>
-											</div>
-											<div class="title-in">
-												<h6><a href="#">{{movie.movie_name}}</a></h6>
-												<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+									<div>
+
+										<div class="slide-it">
+											<div class="movie-item">
+												<div class="mv-img">
+													<img src="{%static ''%}{{movie.movie_image}}"style="width:350px;height: 250px" />
+												</div>
+												<div class="hvr-inner">
+
+															<a href={% url 'rango:movie_detail_page' movie.slug %} >Read more</a>
+												</div>
+												<div class="title-in">
+													<h6><a href="#">{{movie.movie_name}}</a></h6>
+													<p><i class="ion-android-star"></i><span>
+															{% if movie.reviews.count > 0 %}
+															{{ movie.get_average_rating }}
+															{% else %}
+															 Nil
+															{% endif %}
+														</span> /10</p>
+												</div>
 											</div>
 										</div>
 									</div>
-
-									
 									{% endfor %}
-								{% endif %}
-									<div class="slide-it">
-										<div class="movie-item">
-											<div class="mv-img">
-												<img src="images/uploads/mv-it2.jpg" alt="">
-											</div>
-											<div class="hvr-inner">
-												<a href="moviesingle.html"> Read more <i
-														class="ion-android-arrow-dropright"></i> </a>
-											</div>
-											<div class="title-in">
-												<h6><a href="#">The revenant</a></h6>
-												<p><i class="ion-android-star"></i><span>{% if movie.reviews.count > 0 %}
-													{{ movie.get_average_rating }}
-													{% else %}
-													Nil
-													{% endif %}</span> /10</p>
-											</div>
-										</div>
-									</div>
+
+									{% else %}
+									<strong>There are no movies present.</strong>
+									{% endif %}
 
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="title-hd">
-					<h2>on tv</h2>
-					<a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
-				</div>
-				<div class="tabs">
-					<div class="tab-content">
-						<div id="tab21-h2" class="tab active">
-							<div class="row">
-								<div class="slick-multiItem2">
-									<div class="slide-it">
-										<div class="movie-item">
-											<div class="mv-img">
-												<img src="images/uploads/mv-it7.jpg" alt="">
-											</div>
-											<div class="hvr-inner">
-												<a href="moviesingle.html"> Read more <i
-														class="ion-android-arrow-dropright"></i> </a>
-											</div>
-											<div class="title-in">
-												<h6><a href="#">Interstellar</a></h6>
-												<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
