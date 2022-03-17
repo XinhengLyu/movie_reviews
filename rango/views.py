@@ -147,30 +147,21 @@ def add_movie(request):
     'rango/add_movie.html',
     context = {'form': form})
 
-    
-# def add_movie_reviews(request):
-#     if request.method == 'POST':
-#         form = MovieReviewsForm(request.POST) 
-#         if  form.is_valid():
-#              form.save()
-#         else:
-#             print(form.errors)
-#     else:
-#         form = MovieReviewsForm()
-#     return render(request,
-#     'rango/add_movie_reviews.html',
-#     context = {'form': form})
 
 
 def add_movie_reviews(request, movie_slug):
     movie = Movie.objects.get(slug=movie_slug)
 
-    # previous_review_by_user = movie.reviews.get(user=request.user)
-    # if previous_review_by_user:
-    #     return HttpResponse("Cannot submit review for the same movie twice")
+    if not request.user.is_authenticated:
+        return HttpResponse("Must be logged in to submit a review")
 
-    # if request.user.is_superuser:
-    #     return HttpResponse("Admins cannot submit")
+    previous_review_by_user = movie.reviews.filter(user=request.user)
+    if previous_review_by_user:
+        return HttpResponse("Cannot submit review for the same movie twice")
+
+    if request.user.is_superuser:
+        return HttpResponse("Admins cannot submit reviews. Please log in as a regular user")
+
 
     if request.method == 'POST':
         form = MovieReviewsForm(request.POST) 

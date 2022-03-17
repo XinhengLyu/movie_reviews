@@ -30,14 +30,9 @@ class MovieForm(forms.ModelForm):
         model = Movie
         fields = ('movie_name','movie_information','release_date','movie_image')
 class MovieReviewsForm(forms.ModelForm):
-
-    # movie=forms.IntegerField()
-    # user=forms.IntegerField()
-    # review_content=forms.CharField(max_length=256)
-    # likes_number=forms.IntegerField()
-    # dislikes_number=forms.IntegerField()
-    # # creat_time=forms.DateField()
-    # grade=forms.IntegerField()
+    review_content=forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder':'Enter Your Comment'}))
+    grade=forms.IntegerField(label="Rating" )
+    
     class Meta:
         model = Movie_review
         fields = ('review_content','grade')

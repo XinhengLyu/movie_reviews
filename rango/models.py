@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 from django import views
 from django.template.defaultfilters import slugify
 from django.db.models import Avg
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     information = models.CharField(max_length=512,blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     def __str__(self):
@@ -40,15 +41,7 @@ class Movie_review(models.Model):
     likes_number=models.IntegerField(blank=False)
     dislikes_number=models.IntegerField(blank=False)
     create_time=models.DateField(auto_now_add=True)
-    grade=models.DecimalField( max_digits=2, decimal_places=1,blank=False,default=1.0)
+    grade=models.IntegerField(blank=False, default=1.0, validators=[MinValueValidator(1),MaxValueValidator(10)])
     
-    # def clean(self):
-    #     cleaned_data = self.cleaned_data
-    #     grade=cleaned_data.get('grade')
-    #     if grade>10 or grade<0:
-    #         grade = f'0<grade<10'
-    #         cleaned_data['grade'] = grade
-
-    #     return grade
     def __str__(self):
        return self.review_content
