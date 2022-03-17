@@ -7,3 +7,4 @@ media/profile_images/*
 rango/migrations/*
 
 templates/rango/.DS_Store
+static/profile_images/*

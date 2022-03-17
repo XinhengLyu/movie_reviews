@@ -20,23 +20,23 @@ from django.db.models import Avg
 
 
 def index(request):
-    context_dict = {}
-    response = render(request, 'rango/index.html', context=context_dict)
-    return response
+    context_dict={}
+    context_dict['movies'] = Movie.objects.all()
+    return render(request, 'rango/index.html', context=context_dict)
 
 
 def movies_list(request):
-    context_dict = {}
+    context_dict={}
+    context_dict['movies'] = Movie.objects.all()
     response = render(request, 'rango/movies_list.html', context=context_dict)
     return response
 
 
 def user_personal_page(request):
-    id = request.GET.get("id")#或者直接去session里面拿
-    obj = UserProfile.objects.get(id=id)
+    id = request.GET.get("id")
+    obj = UserProfile.objects.get(user_id=id)
     objdic = model_to_dict(obj)
-    
-    #拼接评论
+
     comment = []
     commentList = Movie_review.objects.filter(user_id=id).values()
     for item in commentList:

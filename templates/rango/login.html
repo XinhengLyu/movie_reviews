@@ -4,7 +4,18 @@
 Login
 {% endblock %}
 {% block body_block %}
-<h1>Login to movie review</h1>
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1> Login </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <form id="login_form" method="post" action="{% url 'rango:login' %}">
     {% csrf_token %}
     Username: <input type="text" name="username" value="" size="50" />

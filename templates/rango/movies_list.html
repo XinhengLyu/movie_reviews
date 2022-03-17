@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Movies List
+Movies List
 
 {% endblock %}
 
@@ -24,10 +24,34 @@
             </div>
         </div>
     </div>
-    <div>
-        daaaaaaaa
+
+    <div class="page-single movie_list">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    {% if movies %}
+					{% for movie in movies %}
+                    <div class="movie-item-style-2">
+                        <a href="moviesingle.html"> <img style="height: 260px;width: 170px;" src="{%static ''%}{{movie.movie_image}}"></a>
+                        <div class="mv-item-infor">
+                            <h6><a href="moviesingle.html">{{movie.movie_name}} <span>({{movie.release_date}}[1,4])</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>{% if movie.reviews.count > 0 %}
+                                {{ movie.get_average_rating }}
+                                {% else %}
+                                Nil
+                                {% endif %}</span> /10</p>
+                            <p class="describe">{{movie.movie_information}}
+                            </p>
+                            <p class="run-time"> <span>Release: {{movie.release_date}}</span></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
     </div>
-  
-   
+
 </div>
 {% endblock %}
