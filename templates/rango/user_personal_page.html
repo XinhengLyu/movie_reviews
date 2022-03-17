@@ -58,6 +58,8 @@ User Personal Page
               <p class="time sm-text">your reviews:</p>
               <p class="time sm">{{ item.create_time }}</p>
               <p>{{ item.comment }}</p>		
+              <img src="{% static 'images/like.svg' %}" style="width:22px;height:22px;margin:8px"><span>{{ item.likes_number }}</span>
+              <img src="{% static 'images/dislike.svg' %}" style="width:22px;height:22px;margin:8px;transform: rotateX(180deg);"><span>{{ item.dislikes_number }}</span>
             </div>
           </div>
           {% endfor %}
@@ -78,7 +80,6 @@ User Personal Page
       </div>
     </div>
   </div>
-
 </div>
 {% endblock %}
 
