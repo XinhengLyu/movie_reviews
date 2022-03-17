@@ -33,7 +33,7 @@ def movies_list(request):
 
 
 def user_personal_page(request):
-    id = request.GET.get("id")
+    id = request.user.id
     obj = UserProfile.objects.get(user_id=id)
     objdic = model_to_dict(obj)
 
