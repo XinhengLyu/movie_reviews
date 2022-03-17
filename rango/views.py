@@ -18,7 +18,6 @@ from django.db.models import Avg
 # Create your views here.
 
 
-
 def index(request):
     context_dict={}
     context_dict['movies'] = Movie.objects.all()
