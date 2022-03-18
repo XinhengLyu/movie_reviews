@@ -21,7 +21,7 @@ Homepage
 							<div class="row">
 								<div class="col-md-8 col-sm-12 col-xs-12">
 									<div class="title-in">
-										<h1><a href="#">{{movie.movie_name}} <span>{{movie.release_date}}</span></a></h1>
+										<h1><a href="#">{{movie.movie_name}} <span>{{movie.release_year}}</span></a></h1>
 										<div class="social-btn">
 											<a href={{movie.trailer_link}} class="parent-btn"><i class="ion-play"></i> Watch Trailer</a>
 											<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
@@ -29,7 +29,7 @@ Homepage
 										</div>
 										<div class="mv-details">
 											<p><i class="ion-android-star"></i><span>
-												{% if movie.reviews.count > 0 %}
+												{% if movie.reviews_count > 0 %}
 													{{ movie.get_average_rating }}
 												{% else %}
 													Nil
@@ -65,24 +65,72 @@ Homepage
 		</div>
 	</div>
 </div>
+
 	<!-- <h1>Home Page</h1> -->
 	<div class="movie-items  full-width">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title-hd">
-					<h2>in theater</h2>
+					<h2>Order by date</h2>
 					<a href="/movie/movies_list/" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
 				</div>
 				<div class="tabs">
-					<ul class="tab-links">
-						<li class="active"><a href="#tab1-h2">#Popular</a></li>
-					</ul>
 					<div class="tab-content">
 						<div id="tab1-h2" class="tab active">
 							<div class="row">
 								<div class="slick-multiItem2">
-									{% if movies %}
-									{% for movie in movies %}
+									{% if movies2 %}
+									{% for movie in movies2 %}
+									<div>
+										<div class="slide-it">
+											<div class="movie-item">
+												<div class="mv-img">
+													<img src="{%static ''%}{{movie.movie_image}}"/>
+												</div>
+												<div class="hvr-inner">
+
+															<a href={% url 'rango:movie_detail_page' movie.slug %} >Read more</a>
+												</div>
+												<div class="title-in">
+													<h6><a href="#">{{movie.movie_name}}</a></h6>
+													<p><i class="ion-android-star"></i><span>
+															{% if movie.reviews.count > 0 %}
+															{{ movie.get_average_rating }}
+															{% else %}
+															 Nil
+															{% endif %}
+														</span> /10</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+
+									{% else %}
+									<strong>There are no movies present.</strong>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="movie-items  full-width">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-hd">
+					<h2>order by rating</h2>
+					<a href="/movie/movies_list/" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+				</div>
+				<div class="tabs">
+					<div class="tab-content">
+						<div id="tab1-h2" class="tab active">
+							<div class="row">
+								<div class="slick-multiItem2">
+									{% if movies3 %}
+									{% for movie in movies3 %}
 									<div>
 										<div class="slide-it">
 											<div class="movie-item">

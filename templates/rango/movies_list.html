@@ -36,9 +36,9 @@ Movies List
 
 					{% for movie in movies %}
                     <div class="movie-item-style-2">
-                        <a href={% url 'rango:movie_detail_page' movie.slug %} > <img style="height: 260px;width: 170px;" src="{%static ''%}{{movie.movie_image}}"></a>
+                         <img src="{%static ''%}{{movie.movie_image}}"/>
                         <div class="mv-item-infor">
-                            <h6><a href={% url 'rango:movie_detail_page' movie.slug %} >{{movie.movie_name}} <span>({{movie.release_date}}[1,4])</span></a></h6>
+                            <h6><a href={% url 'rango:movie_detail_page' movie.slug %} >{{movie.movie_name}} <span>({{movie.release_date}})</span></a></h6>
                             <p class="rate"><i class="ion-android-star"></i><span>{% if movie.reviews.count > 0 %}
                                 {{ movie.get_average_rating }}
                                 {% else %}

@@ -53,7 +53,7 @@
                             <p>Rate This Movie: </p>
                             {% if movie.reviews.count > 0 %}
                             {% for i in "xxxxxxxxxx" %}
-                            {%  if forloop.counter < average_rating %}
+                            {%  if forloop.counter <= average_rating %}
                             <i class="ion-ios-star"></i>
                             {% else %}
                             <i class="ion-ios-star-outline"></i>

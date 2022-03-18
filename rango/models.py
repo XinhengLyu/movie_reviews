@@ -34,7 +34,7 @@ class Movie(models.Model):
             rating = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
             return rating
         else:
-            return None
+            return 0
 
 class Movie_review(models.Model):
     movie=models.ForeignKey(Movie, on_delete=models.CASCADE,related_name="reviews") 

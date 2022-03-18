@@ -20,7 +20,35 @@ from django.db.models import Avg
 
 def index(request):
     context_dict={}
-    context_dict['movies'] = Movie.objects.all()
+
+    movie_list = []
+    movie_items = Movie.objects.all()
+
+    
+    for item in movie_items:
+        movieObj = {}
+        movieObj["movie_name"] = item.movie_name
+        movieObj["movie_information"] = item.movie_information
+        movieObj["release_year"] = item.release_date.strftime("%Y")
+        movieObj["release_date"] = item.release_date
+        movieObj["movie_image"] = item.movie_image
+        movieObj["trailer_link"] = item.trailer_link
+        movieObj["slug"] = item.slug
+        movieObj["reviews_count"] = item.reviews.count
+        movieObj["get_average_rating"] = item.get_average_rating()
+        
+        movie_list.append(movieObj)
+
+   
+    movie_list2 = Movie.objects.all().order_by('-release_date')
+
+    def sort_by_rating(e):
+         return e.get_average_rating()
+
+    movie_list3 = list(Movie.objects.all())
+    movie_list3.sort(reverse=True,key=sort_by_rating)
+
+    context_dict={"movies":movie_list,"movies2":movie_list2,"movies3":movie_list3}
     return render(request, 'rango/index.html', context=context_dict)
 
 
