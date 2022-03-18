@@ -180,4 +180,4 @@ def add_movie_reviews(request, movie_slug):
     context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
     context_dict['form'] = form
     context_dict['reviews'] = reviews
-    return render(reverse("rango:movie_detail_page", args=[movie_slug])) 
+    return render(reverse("rango:movie_detail_page", kwargs={"movie_slug":movie_slug})) 
