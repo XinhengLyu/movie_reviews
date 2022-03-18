@@ -7,23 +7,18 @@
 
 
 {% block body_block %}
+
 <div class="hero mv-single-hero">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
             </div>
         </div>
     </div>
 </div>
-
-
-
 <div class="page-single movie-single movie_single">
     <div class="container">
         <div class="row ipad-width2">
-
-            <!-- Movie Poster, and Trailer Button on the left -->
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="movie-img sticky-sb">
                     <img src="/media/{{ movie.movie_image }}" alt="Poster for {{ movie.movie_name }}">
@@ -38,11 +33,21 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Movie Title, Rating and Information -->
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
-                    <h1 class="bd-hd"> {{ movie.movie_name }} </h1>
+                    <h1 class="bd-hd">{{ movie.movie_name }} <span>2015</span></h1>
+                    <div class="social-btn">
+                        <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                        <div class="hover-bnt">
+                            <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+                            <div class="hvr-item">
+                                <a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="movie-rate">
                         <div class="rate">
                             <i class="ion-android-star"></i>
@@ -56,73 +61,117 @@
                             </p>
                             {% endif %}
                         </div>
+                        <div class="rate-star">
+                            <p>Rate This Movie: </p>
+                            {% if movie.reviews.count > 0 %}
+                            {% for i in "xxxxxxxxxx" %}
+                            {%  if forloop.counter < average_rating %}
+                            <i class="ion-ios-star"></i>
+                            {% else %}
+                            <i class="ion-ios-star-outline"></i>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
                     </div>
+                    <div class="movie-tabs">
 
-                    <div class="tab-content">
-                        <div class="row">
-                            <div class="col-md-8 col-sm-12 col-xs-12">
-                                <p>
-                                    {{ movie.movie_information }}
-                                </p>
+                        <div class="container" style="padding-top: 30px">
+                            <div class="card">
+                                <div class="blog-detail-ct">
+                                    <div class="comment-form" style="width: 70%;">
+                                        <h4>Review This Movie</h4>
+                                        <form action="{% url 'rango:add_movie_reviews' movie.slug %}" method="post">
+                                            {% csrf_token %}
+                                            {{ form }}
+                                            <input class="submit" type="submit" placeholder="submit">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs">
+                            <ul class="tab-links tabs-mv">
+                                <li class="active"><a href="#review">Review</a></li>
+                            </ul>
+                            <div class="tab-content">
+
+                                <div id="reviews" class="tab" style="display: block;">
+                                    <div class="row">
+                                        <div class="rv-hd">
+                                            <div class="div">
+                                                <h3>Related Movies To</h3>
+                                                <h2>{{ movie.movie_name }}</h2>
+                                            </div>
+                                            <a href="#" class="redbtn">Write Review</a>
+                                        </div>
+                                        <div class="topbar-filter">
+                                            <p>Found <span>56 reviews</span> in total</p>
+                                        </div>
+                                        {% for review in reviews %}
+                                        <div class="mv-user-review-item">
+                                            <div class="user-infor" style="display:flex;">
+                                                <img src="{%static ''%}{{ review.user.profile.picture }}"
+                                                    style=" padding: 10px;width:80px; height:80px; border-radius:50%; "
+                                                    alt="{{review.user.username}}">
+                                                <div>
+                                                    <h3>{{ review.user }}</h3>
+                                                    <div class="no-star">
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star last"></i>
+                                                    </div>
+                                                    <p class="time">
+                                                        {{ review.create_time }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>{{ review.review_content }}</p>
+                                        </div>
+                                        <hr style="border-bottom: 1px solid #38485B;" />
+                                        {% empty %}
+                                        No reviews yet
+                                        {% endfor %}
+                                        <div class="topbar-filter">
+                                            <label>Reviews per page:</label>
+                                            <select>
+                                                <option value="range">5 Reviews</option>
+                                                <option value="saab">10 Reviews</option>
+                                            </select>
+                                            <div class="pagination2">
+                                                <span>Page 1 of 6:</span>
+                                                <a class="active" href="#">1</a>
+                                                <a href="#">2</a>
+                                                <a href="#">3</a>
+                                                <a href="#">4</a>
+                                                <a href="#">5</a>
+                                                <a href="#">6</a>
+                                                <a href="#"><i class="ion-arrow-right-b"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Movie Review Submission Form -->
-        <div class="container">
-            <div class="card">
-                <div class="blog-detail-ct">
-                    <div class="comment-form">
-                        <h4>Review This Movie</h4>
-                        <form action="{% url 'rango:add_movie_reviews' movie.slug %}" method="post">
-                            {% csrf_token %}
-                            {{ form }}
-                            <input class="submit" type="submit" placeholder="submit">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Movie Reviews Previously Submitted -->
-        <div class="container">
-            <div class="tab-content">
-                {% for review in reviews %}
-                <div class="mv-user-review-item">
-                    <div class="user-infor">
-                        <img src="{%static ''%}{{ review.user.profile.picture }}" style="width:180px; height:180px; border-radius:50%; " alt="{{review.user.username}}">
-                        <div>
-                            <h3>{{ review.user }}</h3>
-                            <div class="no-star">
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star"></i>
-                                <i class="ion-android-star last"></i>
-                            </div>
-                            <p class="time">
-                                {{ review.create_time }}
-                            </p>
-                        </div>
-                    </div>
-                    <p> {{ review.review_content }} </p>
-                </div>
-                {% empty %}
-                    No reviews yet
-                {% endfor %}                    
-            </div>
-        </div>
-
-
     </div>
+</div>
+
+
+
+
+
 
 
     {% endblock %}
