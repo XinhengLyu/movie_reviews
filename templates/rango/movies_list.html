@@ -30,6 +30,10 @@ Movies List
             <div class="row ipad-width2">
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     {% if movies %}
+                    <div class="topbar-filter">
+                        <p>Found <span>{{movies.count}}</span> in total</p>
+                    </div>
+
 					{% for movie in movies %}
                     <div class="movie-item-style-2">
                         <a href={% url 'rango:movie_detail_page' movie.slug %} > <img style="height: 260px;width: 170px;" src="{%static ''%}{{movie.movie_image}}"></a>
