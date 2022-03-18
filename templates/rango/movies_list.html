@@ -35,11 +35,12 @@ Movies List
                     </div>
 
 					{% for movie in movies %}
+                   
                     <div class="movie-item-style-2">
-                         <img src="{%static ''%}{{movie.movie_image}}"/>
+                         <img  src="{%static ''%}{{movie.movie_image}}"/>
                         <div class="mv-item-infor">
-                            <h6><a href={% url 'rango:movie_detail_page' movie.slug %} >{{movie.movie_name}} <span>({{movie.release_date}})</span></a></h6>
-                            <p class="rate"><i class="ion-android-star"></i><span>{% if movie.reviews.count > 0 %}
+                            <h6><a href={% url 'rango:movie_detail_page' movie.slug %} >{{movie.movie_name}} <span>({{movie.release_year}})</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>{% if movie.reviews_count > 0 %}
                                 {{ movie.get_average_rating }}
                                 {% else %}
                                 Nil
@@ -49,6 +50,7 @@ Movies List
                             <p class="run-time"> <span>Release: {{movie.release_date}}</span></p>
                         </div>
                     </div>
+              
                     {% endfor %}
                     {% endif %}
                 </div>
@@ -56,4 +58,7 @@ Movies List
         </div>
     </div>
 </div>
+<style>
+
+</style>
 {% endblock %}

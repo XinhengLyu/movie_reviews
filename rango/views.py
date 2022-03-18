@@ -54,7 +54,22 @@ def index(request):
 
 def movies_list(request):
     context_dict={}
-    context_dict['movies'] = Movie.objects.all()
+    movie_list = []
+    movie_items = Movie.objects.all()
+    for item in movie_items:
+        movieObj = {}
+        movieObj["movie_name"] = item.movie_name
+        movieObj["movie_information"] = item.movie_information
+        movieObj["release_year"] = item.release_date.strftime("%Y")
+        movieObj["release_date"] = item.release_date
+        movieObj["movie_image"] = item.movie_image
+        movieObj["reviews_count"] = item.reviews.count
+        movieObj["get_average_rating"] = item.get_average_rating()
+        movieObj["slug"] = item.slug
+        
+        movie_list.append(movieObj)
+
+    context_dict={"movies":movie_list}
     response = render(request, 'rango/movies_list.html', context=context_dict)
     return response
 
