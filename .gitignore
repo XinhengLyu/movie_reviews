@@ -1,5 +1,5 @@
 db.sqlite3
-__pycache__/ 
+__pycache__/*
 *.pyc
 
 media/Movie_images/*
@@ -11,3 +11,6 @@ static/profile_images/*
 .idea/*
 static/Movie_images/*
 
+movie_reviews/movie_reviews/__pycache__/*
+movie_reviews/rango/__pycache__/*
+/Users/lucas/movie_reviews/movie_reviews/rango/templatetags/__pycache__/*
