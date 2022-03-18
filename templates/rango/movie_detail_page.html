@@ -121,7 +121,7 @@
                                                         <p>Rate This Movie: </p>
                                                         {% if review.grade > 0 %}
                                                         {% for i in "xxxxxxxxxx" %}
-                                                        {%  if forloop.counter < review.grade %}
+                                                        {%  if forloop.counter|add:"-1" < review.grade %}
                                                         <i class="ion-android-star"></i>
                                                         {% else %}
                                                         <i class="ion-android-star last"></i>
