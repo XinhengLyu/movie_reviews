@@ -88,7 +88,7 @@ def register(request):
                 
                 if 'picture' in request.FILES:
                     profile.picture = request.FILES['picture']
-                    profile.save()
+                profile.save()
                 registered = True
         else:
             print(user_form.errors, profile_form.errors)

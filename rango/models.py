@@ -18,7 +18,7 @@ class Movie(models.Model):
     movie_information=models.CharField(max_length=1000,blank=False)
     release_date=models.DateField(blank=False)
     movie_image = models.ImageField(upload_to='Movie_images',blank=False)
-    slug = models.SlugField(default="abc")
+    slug = models.SlugField(unique=True)
     trailer_link = models.URLField(default="/abc") 
 
     def save(self, *args, **kwargs):
@@ -30,18 +30,25 @@ class Movie(models.Model):
     
     def get_average_rating(self):
         reviews = self.reviews.all()
-        rating = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
-        return rating
+        if reviews.count()>0:
+            rating = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
+            return rating
+        else:
+            return None
 
 class Movie_review(models.Model):
     movie=models.ForeignKey(Movie, on_delete=models.CASCADE,related_name="reviews") 
     user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
       
     review_content=models.CharField(max_length=2000,blank=False)
-    likes_number=models.IntegerField(blank=False)
-    dislikes_number=models.IntegerField(blank=False)
+    likes_number=models.IntegerField(blank=False, default=0)
+    dislikes_number=models.IntegerField(blank=False, default=0)
     create_time=models.DateField(auto_now_add=True)
     grade=models.IntegerField(blank=False, default=1.0, validators=[MinValueValidator(1),MaxValueValidator(10)])
-    
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.movie_name) 
+        super(Movie, self).save(*args, **kwargs)     
+
     def __str__(self):
        return self.review_content
