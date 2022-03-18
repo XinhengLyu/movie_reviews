@@ -12,7 +12,6 @@ urlpatterns=[
     path('movie_detail_page/<slug:movie_slug>/',views.movie_detail_page,name='movie_detail_page'),
     path('register/',views.register,name='register'),
     path('login/', views.user_login, name='login'),
-    path('restricted/', views.restricted, name='restricted'),
     path('logout/', views.user_logout, name='logout'),
     path('add_movie/', views.add_movie, name='add_movie'),
     path('add_movie_reviews/<slug:movie_slug>/', views.add_movie_reviews, name='add_movie_reviews'),

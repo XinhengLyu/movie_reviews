@@ -2,23 +2,81 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Register
+Register
 {% endblock %}
 
 {% block body_block %}
-    <h1>Register for movie reviews</h1>
-    {% if registered %}
-        Rango says: <strong>thank you for registering!</strong>
-        <a href="{% url 'rango:index' %}">Return to the homepage.</a><br />
-    {% else %}
-        Rango says: <strong>register here!</strong><br />
-        <form id="user_form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
-            {% csrf_token %}
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1> Sign up </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hero common-hero">
+    <div class="container" style="margin-top: -100px;">
+        <div class="col-md-12">
+            <div class="row">
 
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+                {% if registered %}
+                Rango says: <strong>thank you for registering!</strong>
+                <a href="{% url 'rango:index' %}">Return to the homepage.</a><br />
+                {% else %}
+                <form id="user_form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            <input type="submit" name="submit" value="Register" />
-        </form>
-    {% endif %}
+                    <!-- {{ user_form.as_p }}
+                {{ profile_form.as_p }} -->
+
+                    <div class="lable">
+                        <h2>Username</h2>
+                        {{ user_form.username}}
+                        <h2>email</h2>
+                        {{ user_form.email}}
+                        <h2>password</h2>
+                        {{ user_form.password }}
+                        <h2>information</h2>
+                        {{ profile_form.information }}
+                        <h2>picture</h2>
+                        {{ profile_form.picture }}
+                    </div>
+                    <div class="row">
+                        <button class="butten" type="submit">sign up</button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .lable {
+        margin: auto;
+        font-family: 'Dosis', sans-serif;
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 40%;
+        margin-bottom: 25px;
+    }
+
+    .butten {
+        font-family: 'Dosis', sans-serif;
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        background-color: #dd003f;
+        height: 42px;
+        width: 40%;
+        cursor: pointer;
+    }
+</style>
 {% endblock %}
