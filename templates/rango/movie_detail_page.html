@@ -36,18 +36,6 @@
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
                     <h1 class="bd-hd">{{ movie.movie_name }} <span>2015</span></h1>
-                    <div class="social-btn">
-                        <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
-                        <div class="hover-bnt">
-                            <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
-                            <div class="hvr-item">
-                                <a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
-                                <a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
-                                <a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
-                                <a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="movie-rate">
                         <div class="rate">
                             <i class="ion-android-star"></i>
@@ -74,6 +62,11 @@
                             {% endif %}
                         </div>
                     </div>
+
+                    <div class="container" id="overview">
+                        <p>{{ movie.movie_information }}</p>
+                    </div>
+
                     <div class="movie-tabs">
 
                         <div class="container" style="padding-top: 30px">
@@ -101,13 +94,13 @@
                                     <div class="row">
                                         <div class="rv-hd">
                                             <div class="div">
-                                                <h3>Related Movies To</h3>
+                                                <h3>Reviews For</h3>
                                                 <h2>{{ movie.movie_name }}</h2>
                                             </div>
                                             <a href="#" class="redbtn">Write Review</a>
                                         </div>
                                         <div class="topbar-filter">
-                                            <p>Found <span>56 reviews</span> in total</p>
+                                            <p>Found <span>{{ movie.reviews.count }} reviews</span> in total</p>
                                         </div>
                                         {% for review in reviews %}
                                         <div class="mv-user-review-item">
