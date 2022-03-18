@@ -31,7 +31,7 @@ User Personal Page
         <div class="col-md-3 col-sm-12 col-xs-12">
           <div class="user-information">
             <div class="user-img">
-              <a href="#"><img src="{%static ''%}{{ objdic.picture }}" style="width:180px; height:180px; border-radius:50%; " alt=""><br></a>
+              <a href="#"><img id="profile" src="{%static ''%}{{ objdic.picture }}"><br></a>
               <h1 class="col-md-12" style="font-family: 'Dosis', sans-serif;
               color: #ffffff;
               font-weight: 500;
@@ -68,7 +68,7 @@ User Personal Page
     </div>
   </div>
 </div>
-{% endblock %}
+
 
 
 <style>
@@ -79,5 +79,8 @@ User Personal Page
     text-transform: uppercase;
     margin-bottom: 20px;
   }
-  
+  #profile{
+    width:180px; height:180px; border-radius:50%;
+  }
 </style>
+{% endblock %}
