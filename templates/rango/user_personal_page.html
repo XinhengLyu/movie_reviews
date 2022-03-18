@@ -51,7 +51,7 @@ User Personal Page
           <div class="movie-item-style-2 userrate">
             <img src="{%static ''%}{{ item.movie_image }}" alt="">
             <div class="mv-item-infor">
-              <h6><a href="#">{{ item.movie_name }} <span>({{item.release_year}})</span></a></h6>
+              <h6><a href={% url 'rango:movie_detail_page' item.slug %}>{{ item.movie_name }} <span>({{item.release_year}})</span></a></h6>
               <p class="time sm-text">your rate:</p>
               <p class="rate"><i class="ion-android-star"></i><span>{{ item.grade }}</span> /10</p>
               <p class="time sm-text">your reviews:</p>

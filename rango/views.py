@@ -92,7 +92,7 @@ def user_personal_page(request):
         commentObj["movie_name"] = movieObJ["movie_name"]
         commentObj["movie_image"] = movieObJ["movie_image"]
         commentObj["release_year"]=movieObJ["release_date"].strftime("%Y")
-      
+        commentObj["slug"]=movieObJ["slug"]
         comment.append(commentObj)
     context_dict = {"objdic": objdic,"comment":comment}
     response = render(request, 'rango/user_personal_page.html', context=context_dict)
