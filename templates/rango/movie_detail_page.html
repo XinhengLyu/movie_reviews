@@ -118,16 +118,16 @@
                                                 <div>
                                                     <h3>{{ review.user }}</h3>
                                                     <div class="no-star">
+                                                        <p>Rate This Movie: </p>
+                                                        {% if review.grade > 0 %}
+                                                        {% for i in "xxxxxxxxxx" %}
+                                                        {%  if forloop.counter < review.grade %}
                                                         <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
+                                                        {% else %}
                                                         <i class="ion-android-star last"></i>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        {% endif %}
                                                     </div>
                                                     <p class="time">
                                                         {{ review.create_time }}
@@ -140,23 +140,6 @@
                                         {% empty %}
                                         No reviews yet
                                         {% endfor %}
-                                        <div class="topbar-filter">
-                                            <label>Reviews per page:</label>
-                                            <select>
-                                                <option value="range">5 Reviews</option>
-                                                <option value="saab">10 Reviews</option>
-                                            </select>
-                                            <div class="pagination2">
-                                                <span>Page 1 of 6:</span>
-                                                <a class="active" href="#">1</a>
-                                                <a href="#">2</a>
-                                                <a href="#">3</a>
-                                                <a href="#">4</a>
-                                                <a href="#">5</a>
-                                                <a href="#">6</a>
-                                                <a href="#"><i class="ion-arrow-right-b"></i></a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,4 +157,4 @@
 
 
 
-    {% endblock %}
+{% endblock %}
