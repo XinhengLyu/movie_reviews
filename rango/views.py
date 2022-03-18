@@ -172,12 +172,4 @@ def add_movie_reviews(request, movie_slug):
             form = MovieReviewsForm()
         else:
             print(form.errors)
-    else:
-        form = MovieReviewsForm()
-    context_dict = {}
-    context_dict['movie'] = movie
-    reviews = movie.reviews.all()
-    context_dict['average_rating'] = round(reviews.aggregate(Avg("grade"))["grade__avg"],1)
-    context_dict['form'] = form
-    context_dict['reviews'] = reviews
-    return render(reverse("rango:movie_detail_page", kwargs={"movie_slug":movie_slug})) 
+    return redirect(reverse("rango:movie_detail_page", kwargs={"movie_slug":movie_slug})) 
