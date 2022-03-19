@@ -85,8 +85,6 @@ def user_personal_page(request):
         commentObj = {}
         commentObj["comment"] = item["review_content"]
         commentObj["grade"] = item["grade"]
-        commentObj["likes_number"] = item["likes_number"]
-        commentObj["dislikes_number"] = item["dislikes_number"]
         commentObj["create_time"] = item["create_time"]
         movieObJ = model_to_dict(Movie.objects.get(id=item["movie_id"]))
         commentObj["movie_name"] = movieObJ["movie_name"]

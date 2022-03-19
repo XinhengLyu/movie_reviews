@@ -40,15 +40,8 @@ class Movie_review(models.Model):
     movie=models.ForeignKey(Movie, on_delete=models.CASCADE,related_name="reviews") 
     user=models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")      
     review_content=models.CharField(max_length=2000,blank=False)
-    likes_number=models.IntegerField(blank=False, default=0)
-    dislikes_number=models.IntegerField(blank=False, default=0)
     create_time=models.DateField(auto_now_add=True)
-    grade=models.IntegerField(blank=False, default=1.0, validators=[MinValueValidator(1),MaxValueValidator(10)])
-
-    def save(self, *args, **kwargs):
-        self.likes_number = 0
-        self.dislikes_number = 0
-        super(Movie_review, self).save(*args, **kwargs)     
+    grade=models.IntegerField(blank=False, default=1.0, validators=[MinValueValidator(1),MaxValueValidator(10)])  
 
     def __str__(self):
        return self.review_content
