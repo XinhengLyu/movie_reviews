@@ -7,9 +7,7 @@ media/profile_images/*
 rango/migrations/*
 
 templates/rango/.DS_Store
-static/profile_images/*
 .idea/*
-static/Movie_images/*
 
 movie_reviews/movie_reviews/__pycache__/*
 movie_reviews/rango/__pycache__/*
