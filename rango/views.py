@@ -1,4 +1,5 @@
 from http.client import HTTPResponse
+from unicodedata import category
 from django.forms import model_to_dict
 from django.shortcuts import render
 from django.urls import URLPattern, path
@@ -213,4 +214,26 @@ def add_movie_reviews(request, movie_slug):
             form = MovieReviewsForm()
         else:
             print(form.errors)
-    return redirect(reverse("rango:movie_detail_page", kwargs={"movie_slug":movie_slug})) 
+    return redirect(reverse("rango:movie_detail_page", kwargs={"movie_slug":movie_slug}))
+
+def movie_suggestions(request):
+    if 'suggestion' in request.GET:
+        suggestion = request.GET['suggestion']
+    else:
+        suggestion=''
+    movies_list = get_movies_list(contains=suggestion, max_results=10)
+    return render(request, 'rango/movies_results.html', {'movies':movies_list})
+
+def get_movies_list(contains="", max_results=0):
+    movies_list = []
+
+    if contains:
+        movies_list = Movie.objects.filter(movie_name__contains = contains)
+    
+    if max_results>0:
+        if len(movies_list) > max_results:
+            movies_list = movies_list[:max_results]
+    return movies_list
+
+def movie_search(request):
+    return render(request, 'rango/movies_results_page.html')

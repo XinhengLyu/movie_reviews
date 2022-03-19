@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<div class="col-md-8 col-sm-12 col-xs-12">
+    {% if movies %}
+        <div class="topbar-filter">
+            <p>Found <span>{{movies.count}}</span> movies</p>
+        </div>
+
+        {% for movie in movies %}
+        
+            <div class="movie-item-style-2">
+                <img  src="{%static ''%}{{movie.movie_image}}"/>
+                <div class="mv-item-infor">
+                    <h6><a href={% url 'rango:movie_detail_page' movie.slug %} >{{movie.movie_name}} </a></h6>
+                    <p class="run-time"> <span>Release: {{movie.release_date}}</span></p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No Movies Matching Search Criteria</p>
+    {% endif %}
+</div>

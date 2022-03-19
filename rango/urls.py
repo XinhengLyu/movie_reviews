@@ -15,4 +15,6 @@ urlpatterns=[
     path('logout/', views.user_logout, name='logout'),
     path('add_movie/', views.add_movie, name='add_movie'),
     path('add_movie_reviews/<slug:movie_slug>/', views.add_movie_reviews, name='add_movie_reviews'),
+    path('movie_suggestions/', views.movie_suggestions, name='movie_suggestions'),
+    path('movie_search/', views.movie_search, name='movie_search'),
 ]

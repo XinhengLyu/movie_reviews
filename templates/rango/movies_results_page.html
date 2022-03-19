@@ -1,0 +1,64 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Movies Search
+
+{% endblock %}
+
+
+{% block body_block %}
+<div>
+    <div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1> Search For Movies </h1>
+                        <ul class="breadcumb">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li> <span class="ion-ios-arrow-right"></span> Search For Movies </li>
+                        </ul>
+                        <div class="top-search container">
+                            <input type="text" id="search-input" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-single movie_list">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-8 col-sm-12 col-xs-12" id="movie-listing">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/search.js' %}"></script>
+
+{% endblock %}
+
+
+<!-- 
+
+
+{% load staticfiles %}
+<!DOCTYPE html>
+    <input type="search"
+        id="search-input"
+        class="form-control ds-input"
+        placeholder="Search..." />
+
+
+    <div id="movie-listing">
+
+    </div>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+</html> -->
