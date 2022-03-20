@@ -113,11 +113,11 @@ def populate():
      'movie_image': 'Movie_images/movie_image17.png',
      'trailer_link': 'https://www.youtube.com/watch?v=nzyWNOkKnJg', },
 
-    {'movie_name': 'JUJUTSU KAISEN 0: THE MOVIE',
-     'movie_information': 'When they were children, Rika Orimoto was killed in a traffic accident right before the eyes of her close friend, Yuta Okkotsu. "It\'s a promise. When we both grow up, we\'ll get married." Rika became an apparition, and Yuta longed for his own death after suffering under her curse, but the greatest Jujutsu sorcerer, Satoru Gojo, welcomed him into Jujutsu High. There Yuta meets his classmates, Maki Zen\'in, Toge Inumaki, and Panda, and finally finds his own determination. "I want the confidence to say it\'s okay that I\'m alive!" "While I\'m at Jujutsu High, I\'ll break Rika-chan\'s curse.\" Meanwhile, the vile curse user, Suguru Geto, who was expelled from the school for massacring ordinary people, appears before Yuta and the others. \"This coming December 24th, we shall carry out the Night Parade of a Hundred Demons.\" While Geto advocates for creating a paradise for only jujutsu sorcerers, he unleashes a thousand curses upon Shinjuku and Kyoto to exterminate all non-sorcerers. Will Yuta be able to stop Geto in the end? And what will happen to breaking Rika\'s curse...?',
-     'release_date': '2021-12-24',
+    {'movie_name': 'DUNE',
+     'movie_information': 'Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet\'s exclusive supply of the most precious resource in existence, only those who can conquer their own fear will survive.',
+     'release_date': '2021-10-22',
      'movie_image': 'Movie_images/movie_image18.png',
-     'trailer_link': 'https://www.youtube.com/watch?v=eGSL-l95VXw', },
+     'trailer_link': 'https://www.youtube.com/watch?v=8g18jFHCLXk', },
 
     {'movie_name': 'DEMON SLAYER -KIMETSU NO YAIBA- THE MOVIE: MUGEN TRAIN',
      'movie_information': 'Falling forever into an endless dream... Tanjiro and the group have completed their rehabilitation training at the Butterfly Mansion, and they arrive to their next mission on the Mugen Train, where over 40 people have disappeared in a very short period of time. Tanjiro and Nezuko, along with Zenitsu and Inosuke, join one of the most powerful swordsmen within the Demon Slayer Corps, Flame Hashira Kyojuro Rengoku, to face the demon aboard the Mugen Train on track to despair.',
@@ -394,15 +394,15 @@ def populate():
     # --------------------------------------JUJUTSU KAISEN 0: THE MOVIE----------------------------------------
     movie18_review = [
         {    
-            'review_content':'Jujutsu Kaisen 0 amps up to infinity: witty dialogues, friendships, backstories that surprise and yet make so much sense, amazing fight scenes, and characters you want to take the journey with. Definitely see one of the best anime movies in recent times.',
+            'review_content':'Denis Villeneuve’s windswept epic is engrossing enough to maintain an audience with an intermission and a running time twice its length.',
             'grade':4,  
         },
         {    
-            'review_content':'Jujutu Kaisen 0 is a great expansion into the world created by Gege Akutami. It may not be the ideal entry point for new viewers, but its worth a look due to its strong characters, unique setting, and high-level animation work by MAPPA Studio.',
+            'review_content':'Nowhere near as enjoyable as Villeneuve\'s inspired Blade Runner 2049, Dune is an achievement for sure, but watching it is rather like having huge marble monoliths dropped on you for two and a half hours.',
             'grade':9,  
         },
         {    
-            'review_content':'Yutas one-and-done narrative might help uninitiated viewers to understand the series appeal. There are also a few allusions and cameo appearances by characters, objects, and events from the anime that will probably satisfy fans only.',
+            'review_content':'If nothing else, Dune wins its place as a masterpiece of adaptation, truncating roughly half the novel into its runtime to expand the books monomaniacal focus on Paul into a more ensemble narrative.',
             'grade':6,
         },
     ]
