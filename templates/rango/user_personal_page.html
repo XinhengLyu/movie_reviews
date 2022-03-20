@@ -3,9 +3,7 @@
 
 {% block title_block %}
 User Personal Page
-
 {% endblock %}
-
 
 {% block body_block %}
 
@@ -32,10 +30,7 @@ User Personal Page
           <div class="user-information">
             <div class="user-img">
               <a href="#"><img id="profile" src="{%static ''%}{{ objdic.picture }}"><br></a>
-              <h1 class="col-md-12" style="font-family: 'Dosis', sans-serif;
-              color: #ffffff;
-              font-weight: 500;
-              text-transform: uppercase;">{{user.username}}</h1>
+              <h1 class="col-md-12" id="h1_user_name">{{user.username}}</h1>
             </div> 
             <div class="user-fav">
               <p>Information</p>
@@ -57,12 +52,9 @@ User Personal Page
               <p class="time sm-text">your reviews:</p>
               <p class="time sm">{{ item.create_time }}</p>
               <p>{{ item.comment }}</p>		
-              <!-- <img src="{% static 'images/like.svg' %}" style="width:22px;height:22px;margin:8px"><span>{{ item.likes_number }}</span>
-              <img src="{% static 'images/dislike.svg' %}" style="width:22px;height:22px;margin:8px;transform: rotateX(180deg);"><span>{{ item.dislikes_number }}</span> -->
             </div>
           </div>
           {% endfor %}
-
         </div>
       </div>
     </div>
@@ -81,6 +73,12 @@ User Personal Page
   }
   #profile{
     width:180px; height:180px; border-radius:50%;
+  }
+  h1#h1_user_name{
+    font-family: 'Dosis', sans-serif;
+              color: #ffffff;
+              font-weight: 500;
+              text-transform: uppercase;
   }
 </style>
 {% endblock %}

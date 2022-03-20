@@ -44,14 +44,9 @@
                             <span></span>
                         </div>
                     </div>
-                   <h1 style="text-shadow: 
-                   -.125em -.025em 0 #D70037, 
-                   .025em -.025em 0 #D70037, 
-                   -.025em .025em 0 #D70037, 
-                   .025em .025em 0 #D70037;
-                   color: #fff;" >TEAM26</h1>
+                    <h1 class="teamlogo">TEAM26</h1>
                 </div>
-                
+
                 <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav flex-child-menu menu-left">
                         <li class="hidden">
@@ -67,10 +62,10 @@
                     <ul class="nav navbar-nav flex-child-menu menu-right">
                         {% if user.is_authenticated %}
                         <li> <a href="{% url 'rango:user_personal_page' %}">
-                            <h3>{{user.username}}</h3>
-                        </a></li>
+                                <h3>{{user.username}}</h3>
+                            </a></li>
                         <li class="btn"> <a href="{% url 'rango:logout' %}">Logout</a></li>
-                        
+
                         {% else %}
                         <li><a href="{% url 'rango:register' %}">
                                 sign up
@@ -102,12 +97,7 @@
         <div class="row">
             <div class="flex-parent-ft">
                 <div class="flex-child-ft item1">
-                   <h1 style="text-shadow: 
-                   -.125em -.025em 0 #D70037, 
-                   .025em -.025em 0 #D70037, 
-                   -.025em .025em 0 #D70037, 
-                   .025em .025em 0 #D70037;
-                   color: #fff;">TEAM26</h1>
+                    <h1 class="teamlogo">TEAM26</h1>
                 </div>
                 <div class="flex-child-ft item2">
                     <h4>Team number</h4>
@@ -156,13 +146,17 @@
         </div>
     </footer>
 
+
 </body>
 
 </html>
-
 <style>
-    #Navigator {
-        display: flex;
-        justify-content: space-between
+    .teamlogo{
+        text-shadow:
+            -.125em -.025em 0 #D70037,
+            .025em -.025em 0 #D70037,
+            -.025em .025em 0 #D70037,
+            .025em .025em 0 #D70037;
+        color: #fff;
     }
 </style>

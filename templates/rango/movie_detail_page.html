@@ -105,8 +105,8 @@
                                         {% for review in reviews %}
                                         <div class="mv-user-review-item">
                                             <div class="user-infor" style="display:flex;">
-                                                <img src="{%static ''%}{{ review.user.profile.picture }}"
-                                                    style=" padding: 10px;width:80px; height:80px; border-radius:50%; "
+                                                <img id="profile_picture"
+                                                    src="{%static ''%}{{ review.user.profile.picture }}"
                                                     alt="{{review.user.username}}">
                                                 <div>
                                                     <h3>{{ review.user }}</h3>
@@ -143,4 +143,12 @@
         </div>
     </div>
 </div>
+<style>
+    img#profile_picture {
+        padding: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+</style>
 {% endblock %}
