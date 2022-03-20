@@ -8,7 +8,7 @@
 <head lang="en">
 
     <title>
-        Rango - {% block title_block %}hello!{% endblock %}
+        {% block title_block %}{% endblock %}
     </title>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -53,7 +53,7 @@
                             <span></span>
                         </div>
                     </div>
-                    <h1 class="teamlogo">TEAM26</h1>
+                    <h1 class="teamlogo"><a href="{% url 'rango:index' %}">TEAM26</a></h1>
                 </div>
 
                 <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -63,6 +63,8 @@
                         </li>
                         <li> <a href="{% url 'rango:index' %}">Home</a></li>
                         <li> <a href="{% url 'rango:movies_list' %}">Movies List</a></li>
+                        <li> <a href="{% url 'rango:movie_search' %}">Movies Search</a></li>
+
                         {% if user.is_authenticated %}
                         <li> <a href="{% url 'rango:user_personal_page' %}">Personal Page</a></li>
                         {% endif %}
@@ -135,19 +137,8 @@
                         <li><a href="#">2711430</a></li>
                     </ul>
                 </div>
-                <div class="flex-child-ft item5">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe to our system now <br> to get latest news from us.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your email">
-                    </form>
-                    <a href="#" class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
-                </div>
             </div>
             <div class="ft-copyright">
-                <div class="ft-left">
-                    <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
-                </div>
                 <div class="backtotop">
                     <p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
                 </div>
