@@ -8284,3 +8284,68 @@ footer.full-width-ft .ft-copyright {
   font-family: 'Dosis', sans-serif;
   font-weight: 700;
 }
+.teamlogo{
+  text-shadow:
+      -.125em -.025em 0 #D70037,
+      .025em -.025em 0 #D70037,
+      -.025em .025em 0 #D70037,
+      .025em .025em 0 #D70037;
+  color: #fff;
+}
+
+#hero_h2{
+  font-family: 'Dosis', sans-serif;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+#profile{
+  width:180px; height:180px; border-radius:50%;
+}
+h1#h1_user_name{
+  font-family: 'Dosis', sans-serif;
+            color: #ffffff;
+            font-weight: 500;
+            text-transform: uppercase;
+}
+#register_table {
+  margin: auto;
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 40%;
+  margin-bottom: 25px;
+}
+.login_lable {
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #222222;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 40%;
+  margin-bottom: 25px;
+}
+.butten {
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  background-color: #dd003f;
+  height: 42px;
+  width: 40%;
+  cursor: pointer;
+}
+#container2{
+  margin-top: -100px
+}
+img#profile_picture {
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}

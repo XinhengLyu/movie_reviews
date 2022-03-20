@@ -23,14 +23,14 @@ Login
                 <form id="login_form" method="post" action="{% url 'rango:login' %}">
                     {% csrf_token %}
                     <div class="row">
-                        <label class="lable" for="username">
+                        <label class="login_lable" for="username">
                             <input type="text" name="username" id="username" placeholder="Username"
                                 required="required" />
                         </label>
                     </div>
 
                     <div class="row">
-                        <label class="lable" for="password">
+                        <label class="login_lable" for="password">
                             <input type="password" name="password" id="password" placeholder="password"
                                 required="required" />
                         </label>
@@ -43,33 +43,4 @@ Login
         </div>
     </div>
 </div>
-<style>
-    .lable {
-        font-family: 'Dosis', sans-serif;
-        font-size: 14px;
-        color: #222222;
-        font-weight: bold;
-        text-transform: uppercase;
-        width: 40%;
-        margin-bottom: 25px;
-    }
-
-    .butten {
-        font-family: 'Dosis', sans-serif;
-        font-size: 14px;
-        color: #ffffff;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-        background-color: #dd003f;
-        height: 42px;
-        width: 40%;
-        cursor: pointer;
-    }
-    #container2{
-        margin-top: -100px
-    }
-</style>
-
-
 {% endblock %}

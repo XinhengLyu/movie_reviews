@@ -29,10 +29,7 @@ Register
                 <form id="user_form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    <!-- {{ user_form.as_p }}
-                {{ profile_form.as_p }} -->
-
-                    <div class="lable">
+                    <div id="register_table">
                         <h2>Username</h2>
                         {{ user_form.username}}
                         <h2>email</h2>
@@ -53,30 +50,4 @@ Register
         </div>
     </div>
 </div>
-
-<style>
-    .lable {
-        margin: auto;
-        font-family: 'Dosis', sans-serif;
-        font-size: 14px;
-        color: #ffffff;
-        font-weight: bold;
-        text-transform: uppercase;
-        width: 40%;
-        margin-bottom: 25px;
-    }
-
-    .butten {
-        font-family: 'Dosis', sans-serif;
-        font-size: 14px;
-        color: #ffffff;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-        background-color: #dd003f;
-        height: 42px;
-        width: 40%;
-        cursor: pointer;
-    }
-</style>
 {% endblock %}
