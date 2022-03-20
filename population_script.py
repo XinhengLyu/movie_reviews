@@ -137,7 +137,7 @@ def populate():
     movie1_review = [
         {    
             'review_content':'I Want You Back is sweeter and more sensitive than you might expect from this kind of broad mainstream romp.',
-            'grade':6,
+            'grade':3,
         },
         {    
             'review_content':'Jenny Slate and Charlie Day deserve better than I Want You Back, a leaden rom-com that gives them a shot at being funny, charming, and sweet, only to squander it scene by scene.',  
@@ -152,7 +152,7 @@ def populate():
     movie2_review = [   
         {    
             'review_content':'The screenplay finds it hard to straddle the line between being a light-hearted animal flick that kids can equally enjoy, and a darker tale of war, PTSD and suicide.',
-            'grade':9,
+            'grade':5,
         },
         {    
             'review_content':'A typically congenial, occasionally touching, if far-from-exceptional tale of the bond between two damaged souls, both wounded by the same war...Its no great shakes but Dog thankfully turns out to be a film that does not live up to its name.',
@@ -191,7 +191,7 @@ def populate():
         },
         {    
             'review_content':'Andrew Levitas has crafted a delicate yet passionate human-rights biopic, one where anger and grace balance the scale of a story incredibly powerful in its themes of redemption and injustice.',  
-            'grade':8,
+            'grade':1,
         },
     ]
     # --------------------------------------FRESH----------------------------------------
@@ -202,7 +202,7 @@ def populate():
         },
         {    
             'review_content':'It’s a movie that deserves to spark conversation for quite some time. The dance scenes, the charisma, it’s all meant to seduce but, hopefully, to get us to think about an unavoidably complex subject.',
-            'grade':6,
+            'grade':3,
         },
         {    
             'review_content':'If you want to be terrified of meeting someone to date in real life as well as being terrified of online dating, Fresh is definitely the movie for you.',  
@@ -217,7 +217,7 @@ def populate():
         },
         {    
             'review_content':'A lush, moving and emotionally rich story of longing, love and acceptance featuring a standout performance from Peter Dinklage who -- as he did in “The Station Agent” way back in 2003 -- proves that he is leading-man material.',  
-            'grade':6,
+            'grade':5,
         },
         {    
             'review_content':'Director Joe Wright has a nice romantic visual flair, especially in designing the musical numbers, but there is just too little of the play and the character that I grew up loving that make it into the film.',
@@ -247,7 +247,7 @@ def populate():
         },
         {   
             'review_content':'Gregg is a storyteller still finding her feet. But what a pleasure it is to make her acquaintance. She’s here today, going places tomorrow.',
-            'grade':8,
+            'grade':2,
         },
         {    
             'review_content':'While the characters themselves are experiencing an uncanny dj vu, so are the audience, who may find that they cant quite shake the feeling theyve seen all this before.',  
@@ -258,11 +258,11 @@ def populate():
     movie9_review = [   
         {    
             'review_content':'Here Before can’t decide if it wants to be an ambiguous drama about grief or a rug-pulling horror freak-out. Unfortunately, in trying to be both, Stacey Gregg’s debut satisfies neither impulse.',
-            'grade':9,
+            'grade':6,
         },
         {    
             'review_content':'Gregg is a storyteller still finding her feet. But what a pleasure it is to make her acquaintance. She’s here today, going places tomorrow.',
-            'grade':8,
+            'grade':1,
         },
         {   
             'review_content':'While the characters themselves are experiencing an uncanny dj vu, so are the audience, who may find that they cant quite shake the feeling theyve seen all this before.',  
@@ -277,7 +277,7 @@ def populate():
         },
         {    
             'review_content':'The film’s message is a beautiful one: to integrate our real-life vulnerabilities with the persona we project is to become all the more powerful.',  
-            'grade':9,
+            'grade':6,
         },
         {    
             'review_content':'Belle delivers the perfect blend of drama, humour and heart. It’s a feast for both the eyes and ears, and it tells a story of love, loss, finding your inner strength and accepting who you are.',  
@@ -327,18 +327,18 @@ def populate():
         },
         {    
             'review_content':'The film is a social commentary that features little to no actual penetrative analysis beyond blanket statements about communal sisterhood in the face of patriarchal oppression.',
-            'grade':8,  
+            'grade':7,  
         },
     ]
     # --------------------------------------COME FROM AWAY----------------------------------------
     movie14_review = [
         {    
             'review_content':'Not only is Come From Away relevant in a political sense, but its heart and comforting emotion expressing that no matter how bad things get we will get through it feels perfect for the modern moment.',
-            'grade':5,
+            'grade':3,
         },
         {    
             'review_content':'Briskly paced, it\'s also an important depiction of how disparate people can connect meaningfully, peppering scenes with observations that burst with multifaceted thoughts and feelings.',
-            'grade':9,
+            'grade':5,
         },
         {    
             'review_content':'As the 20th year is upon us, forget "never forget" anger and remember stories like this, where strangers rescued the stranded and the human spirit uplifts souls and emotions.',
@@ -384,7 +384,7 @@ def populate():
         },
         {    
             'review_content':'The documentary presents a complete picture, professional and personal, of an admirable and courageous group of women who have been able to insert themselves into a field dominated not only by men but also by high castes. Full review in Spanish',
-            'grade':9,  
+            'grade':1,  
         },
         {    
             'review_content':'This is a story of women taking their destiny into their own hands, and literally changing the world at the same time told in an entertaining and educating way to its audience.',
@@ -399,7 +399,7 @@ def populate():
         },
         {    
             'review_content':'Nowhere near as enjoyable as Villeneuve\'s inspired Blade Runner 2049, Dune is an achievement for sure, but watching it is rather like having huge marble monoliths dropped on you for two and a half hours.',
-            'grade':9,  
+            'grade':5,  
         },
         {    
             'review_content':'If nothing else, Dune wins its place as a masterpiece of adaptation, truncating roughly half the novel into its runtime to expand the books monomaniacal focus on Paul into a more ensemble narrative.',
@@ -414,7 +414,7 @@ def populate():
         },
         {    
             'review_content':'The animation is first rate. The classic anime character design comes alive though compelling CGI effects and a story that keeps the human emotions intact.',
-            'grade':9,
+            'grade':5,
         },
         {    
             'review_content':'Mugen Train is an average movie tossed into the middle of a sensationally beautiful and thoughtful anime. While Mugen Train is a highly entertaining movie with plenty of heart and action, I wouldn\'t go so far as to call it a great film.',  
@@ -429,7 +429,7 @@ def populate():
         },
         {    
             'review_content':'Featuring one of McDormand\'s best performances - a role she occupies deeply - and emotionally dissecting the economic terrors of backwater America, \'Nomadland\' is one of the best of the year.',
-            'grade':8,
+            'grade':4,
         },
         {    
             'review_content':'A highly recommended road-movie where the melodrama is supported with steel nails, avoiding any kind of easy solution and proudly raising the gaze of those who lost everything.',  

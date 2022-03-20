@@ -16,9 +16,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Avg
 
-# Create your views here.
-
-
 def index(request):
     context_dict={}
 
