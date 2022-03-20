@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Avg
 
+#the function of returning the first six movie items sorted by release date and rating to the homepage(index.html)
 def index(request):
     context_dict={}
 
@@ -49,7 +50,7 @@ def index(request):
     context_dict={"movies":movie_list,"movies2":movie_list2,"movies3":movie_list3}
     return render(request, 'rango/index.html', context=context_dict)
 
-
+#the function of returning all movie items to the movielist page(movies_list.html)
 def movies_list(request):
     context_dict={}
     movie_list = []
@@ -71,7 +72,7 @@ def movies_list(request):
     response = render(request, 'rango/movies_list.html', context=context_dict)
     return response
 
-
+#the function of returning users' profile information to the userprofile page(user_personal_page.html)
 def user_personal_page(request):
     id = request.user.id
     obj = UserProfile.objects.get(user_id=id)
@@ -94,7 +95,7 @@ def user_personal_page(request):
     response = render(request, 'rango/user_personal_page.html', context=context_dict)
     return response
 
-
+#the function of returning movies' detail information to the movie detail page(movie_detail_page.html)
 def movie_detail_page(request, movie_slug):
     context_dict = {}
     movie = Movie.objects.get(slug = movie_slug)
@@ -111,7 +112,7 @@ def movie_detail_page(request, movie_slug):
     return response
 
 
-
+#the function of registering new account
 def register(request):
 
     registered = False
@@ -142,6 +143,7 @@ def register(request):
      'profile_form': profile_form,
      'registered': registered})
 
+#the function of login
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -162,12 +164,13 @@ def user_login(request):
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
 
+#the function of logout
 @login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('rango:index')) 
 
-
+#the fucntion of adding movie items
 def add_movie(request):
     if request.method == 'POST':
         form = MovieForm(request.POST,request.FILES) 
@@ -186,7 +189,7 @@ def add_movie(request):
     context = {'form': form})
 
 
-
+#the function of adding reviews by users
 def add_movie_reviews(request, movie_slug):
     movie = Movie.objects.get(slug=movie_slug)
 
@@ -213,6 +216,7 @@ def add_movie_reviews(request, movie_slug):
             print(form.errors)
     return redirect(reverse("rango:movie_detail_page", kwargs={"movie_slug":movie_slug}))
 
+#the function of returning the search results
 def movie_suggestions(request):
     if 'suggestion' in request.GET:
         suggestion = request.GET['suggestion']
@@ -221,6 +225,7 @@ def movie_suggestions(request):
     movies_list = get_movies_list(contains=suggestion, max_results=10)
     return render(request, 'rango/movies_results.html', {'movies':movies_list})
 
+#the function of getting a filtered list of movies
 def get_movies_list(contains="", max_results=0):
     movies_list = []
 
@@ -232,5 +237,6 @@ def get_movies_list(contains="", max_results=0):
             movies_list = movies_list[:max_results]
     return movies_list
 
+#the function of returning the search results
 def movie_search(request):
     return render(request, 'rango/movies_results_page.html')

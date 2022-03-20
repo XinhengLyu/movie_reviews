@@ -19,6 +19,8 @@
 <div class="page-single movie-single movie_single">
     <div class="container">
         <div class="row ipad-width2">
+
+            <!--the first area displays the poster and trailer link -->
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="movie-img sticky-sb">
                     <img src="/media/{{ movie.movie_image }}" alt="Poster for {{ movie.movie_name }}">
@@ -33,8 +35,13 @@
                     </div>
                 </div>
             </div>
+            <!--end of the first area-->
+
+
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
+
+                    <!--the second area displays of details of the movie -->
                     <h1 class="bd-hd">{{ movie.movie_name }} <span>{{movie.release_date}}</span></h1>
                     <div class="movie-rate">
                         <div class="rate">
@@ -66,7 +73,9 @@
                     <div style="width: auto;" class="container" id="overview">
                         <p>{{ movie.movie_information }}</p>
                     </div>
-
+                    <!--end of the second area-->
+                    
+                    <!--the third area displays the form of the adding reviews -->
                     <div class="movie-tabs">
 
                         <div class="container" style="padding-top: 30px">
@@ -83,7 +92,9 @@
                                 </div>
                             </div>
                         </div>
+                        <!--end of the third area-->
 
+                        <!--the forth area displays the reviews of this movie cretaed by users -->
                         <div class="tabs">
                             <ul class="tab-links tabs-mv">
                                 <li class="active"><a href="#review">Review</a></li>
@@ -137,6 +148,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!--end of the forth area -->
+
                     </div>
                 </div>
             </div>
