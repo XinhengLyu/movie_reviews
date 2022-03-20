@@ -503,7 +503,6 @@ def populate():
         movie = Movie.objects.all()[i]
         for movie_review in reviews[i]:
             userIndex = random.randint(0,4)
-            print(userIndex)
             user = User.objects.all()[userIndex]
             add_movie_review(movie, user, movie_review["review_content"], movie_review["grade"])
             
