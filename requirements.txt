@@ -1,0 +1,21 @@
+certifi==2021.5.30
+cffi @ file:///opt/concourse/worker/volumes/live/6ed3f91b-28f6-4d58-6a9b-7a5e864c6554/volume/cffi_1625814710543/work
+cryptography @ file:///opt/concourse/worker/volumes/live/efc30a4d-1b2f-4c46-6f02-ff41b1cfc0e9/volume/cryptography_1635366582988/work
+distlib==0.3.4
+Django==2.1.5
+filelock==3.4.1
+importlib-metadata==4.8.3
+importlib-resources==5.4.0
+olefile==0.46
+Pillow @ file:///opt/concourse/worker/volumes/live/516b2492-3bc8-4336-694b-cc677c18a0f6/volume/pillow_1625655827757/work
+pipenv==2022.1.8
+platformdirs==2.4.0
+psycopg2 @ file:///opt/concourse/worker/volumes/live/f55cefe6-405c-4e89-6ffc-e3fc11a5d3e8/volume/psycopg2_1612298588356/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+PyMySQL @ file:///opt/concourse/worker/volumes/live/c85d1a83-929d-464d-5004-fc4ad078a4ae/volume/pymysql_1610482898128/work
+pytz==2021.3
+six==1.16.0
+typing_extensions==4.1.1
+virtualenv==20.13.2
+virtualenv-clone==0.5.7
+zipp==3.6.0
