@@ -37,8 +37,8 @@ SECRET_KEY = 'p^26tmzsd&#pt+erf8(firm3eqj__)*i-brtx=%-u419qh(+8s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['xinhenglyu.pythonanywhere.com']
-
+# ALLOWED_HOSTS = ['xinhenglyu.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
